@@ -12,6 +12,6 @@ int main(void)
         height = get_int("Height: ");
     }
     while (height < 1 || height > 8);
-    
+
     build(height);
 }
