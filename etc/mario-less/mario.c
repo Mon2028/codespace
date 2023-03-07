@@ -11,7 +11,7 @@ int main(void)
     {
         height = get_int("Height: ");
     }
-    while (height < 1 || height > 8);
+    while (height < 1 || height > 10);
 
     create(height);
 }
@@ -22,12 +22,12 @@ void create(int n)
     {
         for (int y = 1; y < (n + 1); y++)
         {
-            printf(" ");
+            printf("...");
         }
-       
+
         {
-            printf("#");
+            printf(" # ");
         }
-        printf("\n");
+        printf(" #\n ");
     }
 }
