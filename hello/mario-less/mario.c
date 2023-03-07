@@ -17,3 +17,17 @@ int main(void)
 }
 
 void build(int n)
+{
+    for (int x = 1; x < (n + 1); x++)
+    {
+        for (int y = 1; y < (n + 1); y++)
+        {
+            printf(" ");
+        }
+        else
+        {
+            printf("#");
+        }
+        printf("\n");
+    }
+}
