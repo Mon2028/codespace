@@ -24,7 +24,7 @@ void create(int n)
         {
             printf(" ");
         }
-        else
+       
         {
             printf("#");
         }
