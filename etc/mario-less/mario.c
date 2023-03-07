@@ -22,7 +22,7 @@ void create(int n)
     {
         for (int y = 1; y < (n + 1); y++)
         {
-            printf("...");
+            printf(" ");
         }
 
         {
