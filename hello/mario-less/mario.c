@@ -1,7 +1,7 @@
 #include <cs50.h>
 #include <stdio.h>
 
-void build(int n);
+void create(int n);
 
 int main(void)
 {
@@ -13,10 +13,10 @@ int main(void)
     }
     while (height < 1 || height > 8);
 
-    build(height);
+    create(height);
 }
 
-void build(int n)
+void create(int n)
 {
     for (int x = 1; x < (n + 1); x++)
     {
