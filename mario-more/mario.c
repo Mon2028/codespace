@@ -2,24 +2,13 @@
 
 #include <stdio.h>
 
-
-
-
 int get_positive_int(string prompt);
 
-
-
-
 int main(void)
-
-
-
 
 {
 
     int number = get_positive_int("Height: ");
-
-
 
 
     for (int height = 0; height < number; height++)
@@ -57,15 +46,7 @@ int main(void)
     }
 
 }
-
-
-
-
 int get_positive_int(string prompt)
-
-
-
-
 {
 
     int number;
@@ -73,9 +54,7 @@ int get_positive_int(string prompt)
     do
 
     {
-
         number = get_int("%s", prompt);
-
     }
 
     while (number < 1 || number > 8);
