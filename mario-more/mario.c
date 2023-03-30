@@ -1,7 +1,15 @@
 #include <cs50.h>
 #include <stdio.h>
 
-int main(void) 
+int get_positive_int(string prompt);
+
+int main(void)
 {
-    
+    int number = get_positive_int("Height: ");
+    for (int height = 0; height < number; height++)
+    {
+        for (int spaces = number - height - 2; spaces >= 0; spaces--)
+    }
+    printf(" ");
+
 }
