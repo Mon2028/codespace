@@ -11,5 +11,12 @@ int main(void)
         for (int spaces = number - height - 2; spaces >= 0; spaces--)
     }
     printf(" ");
+    }
+    for (int row2 = 0; row2 <= height; row2++)
+    {
+        printf("#");
+    }
+    printf(" ");
+    for 
 
 }
