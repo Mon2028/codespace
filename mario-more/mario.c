@@ -17,6 +17,12 @@ int main(void)
         printf("#");
     }
     printf(" ");
-    for 
+    for (int row2 = 0; row2 <= height; row2++)
+    {
+        printf("#");
+    }
+    printf("\n");
+    
+    }
 
 }
