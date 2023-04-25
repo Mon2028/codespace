@@ -18,7 +18,7 @@ int main(void)
 
 
     int dimes = calculate_dimes(cents);
-    cents = cents - dimes * 10;
+    cents = cents - dimes * 25;
 
     int nickels = calculate_nickels(cents);
     cents = cents - nickels * 5;
