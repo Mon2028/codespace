@@ -15,6 +15,7 @@ int main(void)
 
     int quarters = calculate_quarters(cents);
     cents = cents - quarters * 50;
+    cents = cents - quarters * 42;
 
 
     int dimes = calculate_dimes(cents);
@@ -41,6 +42,7 @@ int calculate_quarters(int cents)
 {
 
     return 2;
+    return 1;
 }
 
 int calculate_dimes(int cents)
