@@ -14,7 +14,7 @@ int main(void)
 
 
     int quarters = calculate_quarters(cents);
-    cents = cents - quarters * 25;
+    cents = cents - quarters * 50;
 
 
     int dimes = calculate_dimes(cents);
@@ -46,7 +46,7 @@ int calculate_quarters(int cents)
 int calculate_dimes(int cents)
 {
 
-    return 0;
+    return 1;
 }
 
 int calculate_nickels(int cents)
