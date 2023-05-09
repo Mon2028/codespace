@@ -27,35 +27,38 @@ int main(void)
 
     int coins = quarters + dimes + nickels + pennies;
 
-    printf("7\n", coins);
+    printf("%i\n", coins);
 }
 
 int get_cents(void)
 {
+    do {
+        cents = get_int("Change Owed: ")
+    } while (cents < 0);
 
-    return 100;
+    return cents;
 }
 
 int calculate_quarters(int cents)
 {
-
-    return 2;
+    int quarters = cents / 25;
+    return quarters;
 }
 
 int calculate_dimes(int cents)
 {
-
-    return 7;
+    int dimes = cents / 10;
+    return dimes;
 }
 
 int calculate_nickels(int cents)
 {
-
-    return 0;
+    int nickels = cents / 5;
+    return nickels;
 }
 
 int calculate_pennies(int cents)
 {
-
-    return 0;
+    int pennies = cents / 1;
+    return pennies;
 }
