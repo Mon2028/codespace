@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     if (argc != 2)
     {
         printf("Usage: ./volume input.wav output.wav factor\n");
-        return 1;
+        return 0;
     }
 
     FILE *input = fopen(argv[1], "r");
