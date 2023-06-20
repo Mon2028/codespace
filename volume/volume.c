@@ -15,14 +15,14 @@ int main(int argc, char *argv[])
     }
 
     FILE *input = fopen(argv[1], "r");
-    if (input == 0)
+    if (input == NULL)
     {
         printf("Could not open file.\n");
         return 1;
     }
 
     FILE *output = fopen(argv[2], "w");
-    if (output == 0)
+    if (output == NULL)
     {
         printf("Could not open file.\n");
         return 1;
