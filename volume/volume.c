@@ -4,14 +4,14 @@
 #include <stdlib.h>
 #include <math.h>
 
-const int HEADER_SIZE = 40;
+const int HEADER_SIZE = 44;
 
 int main(int argc, char *argv[])
 {
     if (argc != 4)
     {
         printf("Usage: ./volume input.wav output.wav factor\n");
-        return 0;
+        return 1;
     }
 
     FILE *input = fopen(argv[1], "r");
@@ -29,7 +29,6 @@ int main(int argc, char *argv[])
     }
 
     float factor = atof(argv[3]);
-
     uint8_t header[HEADER_SIZE];
     fread(&header, sizeof(header), 1, input);
     fwrite(&header, sizeof(header), 1, output);
@@ -40,8 +39,6 @@ int main(int argc, char *argv[])
         buffer *= factor;
         fwrite(&buffer, sizeof(buffer), 1, output);
     }
-
-    // Close files
     fclose(input);
     fclose(output);
 }
