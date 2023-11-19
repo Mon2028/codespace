@@ -46,28 +46,18 @@ def main():
                 break
             else:
                 output = "No match"
-                #  print(output)
 
     print(output)
 
-
-# This function accepts a pattern and a dna sequence
 def compute(pattern, dnaSeq):
-    # re to finda maximum repetetive patern
     match = re.findall(f'(?:{pattern})+', dnaSeq)
-    # print(match)
-    # if there is no Pattern found stop and return 0
     if match == []:
         myresult = 0
         return myresult
-    # else find max pattern then length counts the length of the pattern
-    # then calculator devides length of pattern with pattern itself to find maximum repetition
     else:
         extractor = max(match, key=len)
         lentgth = len(extractor)
         calculator = round(lentgth / len(pattern))
-        # print(calculator)
         return calculator
-
 
 main()
