@@ -17,9 +17,9 @@ def main():
 
     with open(sequence) as txt:
         dna = txt.read()
-        mysequnece = dna
+        mysequence = dna
 
-    text = mysequnece
+    text = mysequence
 
     AGATC = compute('AGATC', text)
     AATG = compute('AATG', text)
@@ -34,18 +34,18 @@ def main():
         for i in range(len(db)):
             for i in range(len(db)):
                 if all([db[i]["AGATC"] == str(AGATC), db[i]["AATG"] == str(AATG), db[i]["TATC"] == str(TATC)]):
-                    output = db[i]["name"]
+                    output = db[i]["Name"]
                     break
                 else:
-                    output = "No match"
+                    output = "No Match"
     else:
         for i in range(len(db)):
             if all([db[i]["AGATC"] == str(AGATC), db[i]["TTTTTTCT"] == str(TTTTTTCT), db[i]["TCTAG"] == str(TCTAG), db[i]["AATG"] == str(AATG),
                     db[i]["GATA"] == str(GATA), db[i]["TATC"] == str(TATC), db[i]["GAAA"] == str(GAAA), db[i]["TCTG"] == str(TCTG)]):
-                output = db[i]["name"]
+                output = db[i]["Name"]
                 break
             else:
-                output = "No match"
+                output = "No Match"
 
     print(output)
 
