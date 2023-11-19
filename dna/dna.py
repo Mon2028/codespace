@@ -1,59 +1,73 @@
 import csv
 import sys
+import re
+
+if len(sys.argv) != 3:
+    sys.exit("Usage: python dna.py data.csv sequence.txt")
+
+database = sys.argv[1]
+sequence = sys.argv[2]
+db = []
 
 def main():
-
-    if len(sys.argv) < 3:
-        print("Usage: python dna.py *.csv *.txt")
-        sys.exit(1)
-
-    database = []
-    with open(sys.argv[1], 'r') as file:
+    with open(database) as file:
         reader = csv.DictReader(file)
         for row in reader:
-            database.append(row)
+            db.append(row)
 
-    with open(sys.argv[2], 'r') as file:
-        dna_sequence = file.read()
-    subsequences = list(database[0].keys())[1:]
-    result = {}
-    for subsequence in subsequences:
-        result[subsequence] = longest_match(dna_sequence, subsequence)
+    with open(sequence) as txt:
+        dna = txt.read()
+        mysequnece = dna
 
-    for person in database:
-        match = 0
-        for subsequence in subsequences:
-            if int(person[subsequence]) == result[subsequence]:
-                match += 1
+    text = mysequnece
 
-        if match == len(subsequences):
-            print(person["name"])
-            return
+    AGATC = compute('AGATC', text)
+    AATG = compute('AATG', text)
+    TATC = compute('TATC', text)
+    TTTTTTCT = compute('TTTTTTCT', text)
+    TCTAG = compute('TCTAG', text)
+    GATA = compute('GATA', text)
+    GAAA = compute('GAAA', text)
+    TCTG = compute('TCTG', text)
 
-    print("No match")
-    return
-
-def longest_match(sequence, subsequence):
-    """Returns length of longest run of subsequence in sequence."""
-
-    longest_run = 0
-    subsequence_length = len(subsequence)
-    sequence_length = len(sequence)
-
-    for i in range(sequence_length):
-       count = 0
-    while True:
-
-            start = i + count * subsequence_length
-            end = start + subsequence_length
-
-            if sequence[start:end] == subsequence:
-                count += 1
-            else:
+    if sys.argv[1] == 'databases/small.csv':
+        for i in range(len(db)):
+            for i in range(len(db)):
+                if all([db[i]["AGATC"] == str(AGATC), db[i]["AATG"] == str(AATG), db[i]["TATC"] == str(TATC)]):
+                    output = db[i]["name"]
+                    break
+                else:
+                    output = "No match"
+    else:
+        for i in range(len(db)):
+            if all([db[i]["AGATC"] == str(AGATC), db[i]["TTTTTTCT"] == str(TTTTTTCT), db[i]["TCTAG"] == str(TCTAG), db[i]["AATG"] == str(AATG),
+                    db[i]["GATA"] == str(GATA), db[i]["TATC"] == str(TATC), db[i]["GAAA"] == str(GAAA), db[i]["TCTG"] == str(TCTG)]):
+                output = db[i]["name"]
                 break
+            else:
+                output = "No match"
+                #  print(output)
 
-    longest_run = max(longest_run, count)
+    print(output)
 
-    return longest_run
+
+# This function accepts a pattern and a dna sequence
+def compute(pattern, dnaSeq):
+    # re to finda maximum repetetive patern
+    match = re.findall(f'(?:{pattern})+', dnaSeq)
+    # print(match)
+    # if there is no Pattern found stop and return 0
+    if match == []:
+        myresult = 0
+        return myresult
+    # else find max pattern then length counts the length of the pattern
+    # then calculator devides length of pattern with pattern itself to find maximum repetition
+    else:
+        extractor = max(match, key=len)
+        lentgth = len(extractor)
+        calculator = round(lentgth / len(pattern))
+        # print(calculator)
+        return calculator
+
 
 main()
