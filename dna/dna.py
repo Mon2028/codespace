@@ -21,13 +21,13 @@ def main():
 
     text = mysequnece
 
-    AGATC = compute('AGAATC', text)
+    AGATC = compute('AGATC', text)
     AATG = compute('AATG', text)
     TATC = compute('TATC', text)
     TTTTTTCT = compute('TTTTTTCT', text)
     TCTAG = compute('TCTAG', text)
     GATA = compute('GATA', text)
-    GAAA = compute('GAAT', text)
+    GAAA = compute('GAAA', text)
     TCTG = compute('TCTG', text)
 
     if sys.argv[1] == 'databases/small.csv':
