@@ -12,10 +12,12 @@ def main():
         reader = csv.DictReader(file)
         for row in reader:
             db.append(row)
+
     with open(sequence) as txt:
         dna = txt.read()
         mysequence = dna
-text = mysequence
+        text = mysequence
+
     AGATC = compute('AGATC', text)
     AATG = compute('AATG', text)
     TATC = compute('TATC', text)
@@ -24,14 +26,17 @@ text = mysequence
     GATA = compute('GATA', text)
     GAAA = compute('GAAA', text)
     TCTG = compute('TCTG', text)
+
     if sys.argv[1] == 'databases/small.csv':
         for i in range(len(db)):
             for i in range(len(db)):
                 if all([db[i]["AGATC"] == str(AGATC), db[i]["AATG"] == str(AATG), db[i]["TATC"] == str(TATC)]):
                     output = db[i]["name"]
+
                     break
                 else:
                     output = "No match"
+
     else:
         for i in range(len(db)):
             if all([db[i]["AGATC"] == str(AGATC), db[i]["TTTTTTCT"] == str(TTTTTTCT), db[i]["TCTAG"] == str(TCTAG), db[i]["AATG"] == str(AATG),
