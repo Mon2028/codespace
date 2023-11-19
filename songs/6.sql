@@ -1,1 +1,1 @@
-select songs from songs.artist_id = (select id from songs where name == "Post Malone");
+select songs from songs.artist_id = (select id from songs where name = "Post Malone");
