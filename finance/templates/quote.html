@@ -8,6 +8,7 @@
    <h2>Get Stock Quote</h2>
    <form action="{{ url_for('quote') }}" method="post">
     <label for=""symbol">Symbol</label>
-    <input type="text"
+    <input type="text" name="symbol" id="symbol" placeholder="Symbol">
+    <button type="submit">Get A Quote</button>
    </form>
 {% endblock %}
