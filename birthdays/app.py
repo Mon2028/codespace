@@ -12,11 +12,11 @@ def index():
         Name = request.form.get("Name")
         Month = request.form.get("Month")
         Day = request.form.get("Day")
-        if not name:
+        if not Name:
             message = "Missing Name"
-        elif not month:
+        elif not Month:
             message = "Missing Month"
-        elif not day:
+        elif not Day:
             message = "Missing Day"
         else:
             db.execute(
