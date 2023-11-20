@@ -139,6 +139,9 @@ def register():
 
         return redirect("/")
 
+    else:
+        return render_template("register.html")
+
 
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
