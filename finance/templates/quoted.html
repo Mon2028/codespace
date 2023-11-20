@@ -1,24 +1,27 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Search Results
+    Quoted
 {% endblock %}
 
 {% block main %}
-    <table class="table table-light mx-auto w-25">
-        <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Symbol</th>
-                <th scope="col">Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ stock.name }}</td>
-                <td>{{ stock.symbol }}</td>
-                <td>{{ stock.price }}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Quote</h2>
+            <table class="table table-bordered">
+                <tr>
+                    <th>Name</th>
+                    <th>Symbol</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td>{{ quote['name'] }}</td>
+                    <td>{{ quote['symbol'] }}</td>
+                    <td>{{ quote['price'] | usd }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock %}
