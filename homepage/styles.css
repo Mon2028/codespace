@@ -1,0 +1,52 @@
+.indent
+{
+    margin-left: 210pt;
+    margin-right: 210pt;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    border-radius: 0px;
+}
+h1
+{
+    margin-left: 210pt;
+    padding-top: 12px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    border-radius: 0px;
+}
+h4
+{
+    margin-left: 210pt;
+    padding-top: 12px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    border-radius: 0px;
+}
+p
+{
+    margin-left: 210pt;
+    margin-right: 210pt;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    border-radius: 0px;
+}
+.indent_img
+{
+    margin-top: 20px;
+    margin-left: 210pt;
+    margin-right: 210pt;
+    border: 2px solid yellow;
+    border-radius: 4px;
+}
+body
+{
+    color: orange;
+    background-color: red;
+}
+hr.solid
+{
+    margin-left: 250pt;
+    margin-right: 250pt;
+    border-top: 3px solid #C0C0C0;
+    border-radius: 5px;
+}
