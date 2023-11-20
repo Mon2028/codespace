@@ -1,39 +1,32 @@
 import os
-
 from cs50 import SQL
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
 
-# Configure application
 app = Flask(__name__)
-
-# Ensure templates are auto-reloaded
-app.config["TEMPLATES_AUTO_RELOAD"] = True
-
-# Configure CS50 Library to use SQLite database
+app.config["templates_auto_reload"] = True
 db = SQL("sqlite:///birthdays.db")
-
-
-@app.after_request
-def after_request(response):
-    """Ensure responses aren't cached"""
-    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-    response.headers["Expires"] = 0
-    response.headers["Pragma"] = "no-cache"
-    return response
-
-
-@app.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["get", "post"])
 def index():
-    if request.method == "POST":
-
-        # TODO: Add the user's entry into the database
-
-        return redirect("/")
-
+    if request.method == "post":
+        message = ""
+        Name = request.form.get("Name")
+        Month = request.form.get("Month")
+        Day = request.form.get("Day")
+        if not name:
+            message = "Missing Name"
+        elif not month:
+            message = "Missing Month"
+        elif not day:
+            message = "Missing Day"
+        else:
+            db.execute(
+                "Insert Into Birthdays (Name, Month, Day) VALUES(?, ?, ?)",
+                Name,
+                Month,
+                Day,
+            )
+        birthdays = db.execute("SELECT * FROM birthdays")
+        return render_template("index.html", message=message, birthdays=birthdays)
     else:
-
-        # TODO: Display the entries in the database on index.html
-
-        return render_template("index.html")
-
-
+        birthdays = db.execute("SELECT * FROM birthdays")
+        return render_template("index.html", birthdays=birthdays)
