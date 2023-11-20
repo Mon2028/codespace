@@ -1,4 +1,4 @@
-CREATE TABLE trades (
+CREATE TABLE: trades (
                     id INTEGER NOT NULL,
                     transaction_id INTEGER PRIMARY KEY AUTOINCREMENT,
                     symbol TEXT NOT NULL,
