@@ -296,6 +296,9 @@ def change_password():
         new_password = request.form.get("new_password")
         confirm_password = request.form.get("confirm_password")
 
+        if current_password == confirm_password:
+            return redirect("/")
+
         # Ensure current password was submitted
         if not current_password:
             return apology("Current password is required", 403)
