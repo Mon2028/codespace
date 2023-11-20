@@ -74,6 +74,8 @@ else:
 
     db.execute("UPDATE users SET cash = ? WHERE id = ?", user_id)
 
+    date = datetime.datetime.now()
+
 
 @app.route("/history")
 @login_required
