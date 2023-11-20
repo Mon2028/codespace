@@ -48,7 +48,19 @@ if request.method == "GET":
 
 else:
     symbol = request.form.get("symbol")
-    shares = request.form.get("shares")
+    shares = int(request.form.get("shares"))
+
+     if not symbol:
+        return apology('Must Give Symbol")
+
+    stock = lookup(symbol.upper())
+
+    if stock == None:
+    return apology("Symbol Doesn't Exist")
+
+    if shares < 0:
+    return apology("Share not allowed")
+
 
 @app.route("/history")
 @login_required
