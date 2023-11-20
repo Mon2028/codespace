@@ -1,23 +1,26 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    SELL
+SELL
 {% endblock %}
 
 {% block main %}
-    <h1>Sell</h1>
-    <form action="/sell" method="post">
-        <div class="mb-3">
-            <select name="symbol">
-                {% for symbol in symbols %}
-                    <option value="{{ symbol }}">{{ symbol }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="mb-3">
-            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="shares" placeholder="Shares" type="number">
-        </div>
 
-        <button class="btn btn-primary" type="submit">Sell</button>
-    </form>
+<form action="/sell" method="post">
+  <div class="form-group">
+    <select name="symbol" class="form-control">
+      <option disable selected value>Symbol</option>
+      {% for dict in stocks %}
+      {% for key, symbol in dict.items() %}
+      <option value="{{symbol}}">{{symbol}}</option>
+      {% endfor %}
+      {% endfor %}
+    </select>
+  </div>
+  <div class="form-group">
+    <input autocomplete="off" autofocus class="form-control" name="shares" placeholder="Shares" type="text">
+  </div>
+  <button class="btn btn-primary" type="submit">SELL</button>
+</form>
+
 {% endblock %}
