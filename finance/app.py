@@ -252,13 +252,13 @@ def register():
 
         # Ensure password is stronger (has characters, digits, symbols)
         if len(password) < 8:
-            return apology("Password must be at least 8 characters long!", 403)
+            return apology("Password must be at least 8 characters long!", 400)
         if (
             not re.search("[a-zA-Z]", password)
             or not re.search("[0-9]", password)
             or not re.search("[!@#$%^&*()]", password)
         ):
-            return apology("Password must contain characters, digits and symbols!", 403)
+            return apology("Password must contain characters, digits and symbols!", 200)
 
         # Check for password to be the same
         if password != confirmation:
