@@ -292,28 +292,20 @@ def passwordupdate():
 
     if request.method == "POST":
 
-        # Validate submission
         currentpassword = request.form.get("currentpassword")
         newpassword = request.form.get("newpassword")
         confirmation = request.form.get("confirmation")
 
-        # Query database for username
         rows = db.execute("SELECT * FROM users WHERE id = ?", session["user_id"])
 
-        # Ensure password == confirmation
         if not (newpassword == confirmation):
             return apology("the passwords do not match", 400)
 
-        # Ensure password not blank
         if currentpassword == "" or newpassword == "" or confirmation == "":
             return apology("input is blank", 400)
-
-       # Ensure password is correct
         if not check_password_hash(rows[0]["hash"], currentpassword):
             return apology("invalid password", 403)
         else:
             hashcode = generate_password_hash(newpassword, method='pbkdf2:sha256', salt_length=8)
             db.execute("UPDATE users SET hash = ? WHERE id = ?", hashcode, session["user_id"])
-
-        # Redirect user to settings
         return redirect("/settings")
