@@ -6,16 +6,21 @@
 
 {% block main %}
 <table>
+    <thead>
     <tr>
       <th>Symbols</th>
       <th>Shares</th>
       <th>Price</th>
     </tr>
+    </thead>
+    <tbody>
+    {% for row in database %}
     <tr>
-      <td>Alfreds Futterkiste</td>
-      <td>Maria Anders</td>
-      <td>Germany</td>
+        <tr>{{row["symbol"]}}</tr>
+        <tr>{{row["shares"]}}</tr>
+        <tr>{{row["price"]}}</tr>
     </tr>
+</tbody>
   </table>
 
 {% endblock %}
