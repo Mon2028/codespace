@@ -193,7 +193,7 @@ def register():
 
         session["user_id"] = rows[0]["id"]
 
-        return redirect("/")
+        return redirect("/index", money = 10000, total = 10000)
 
     else:
         return render_template("register.html")
