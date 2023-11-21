@@ -191,7 +191,68 @@ def register():
     return redirect("/")
 
 
+@app.route("/sell", methods=["GET", "POST"])
+@login_required
+def sell():
+    """Sell shares of stock."""
+    stocks = db.execute("SELECT * FROM stocks WHERE user_id = :user_id", user_id=session["user_id"])
 
+    # if user reached route via POST (as by submitting a form via POST)
+    if request.method == "POST":
+
+        # ensure quantity was submited
+        if not request.form.get("quantity") or int(request.form.get("quantity")) < 1:
+            return render_template("sell.html", stocks=stocks)
+
+        user_id = session["user_id"]
+        symbol = request.form.get("symbol").upper()
+        quantity = request.form.get("quantity")
+
+        # retrieve stock from db
+        stock_db = db.execute("SELECT * FROM stocks WHERE user_id = :user_id AND symbol = :symbol",
+                            user_id=user_id, symbol=symbol)
+        if stock_db:
+            stock_db = stock_db[0]
+        else:
+            return render_template("sell.html", stocks=stocks)
+
+        # retrieve user data from db
+        user = db.execute("SELECT * FROM users WHERE id = :id", id=user_id)
+
+        # ensure quantity to be sold is available
+        if int(quantity) > stock_db["quantity"]:
+            return apology(top="not enough shares", bottom="available: " + str(stock_db["quantity"]))
+
+        # lookup the stock to get current price
+        stock = lookup(symbol)
+
+        # calculate total price
+        total_price = float(stock["price"]) * float(quantity)
+
+        # modify number of shares owned or delete if < 1
+        if int(quantity) == stock_db["quantity"]:
+            db.execute("DELETE FROM stocks WHERE user_id = :user_id AND symbol = :symbol", user_id=user_id, symbol=symbol)
+        else:
+            new_quantity = int(stock_db["quantity"]) - int(quantity)
+            new_total = float(new_quantity) * float(stock_db["pps"])
+            db.execute("UPDATE stocks SET quantity = :quantity, total = :total WHERE user_id = :user_id AND symbol = :symbol",
+                        quantity=new_quantity, total=new_total, user_id=user_id, symbol=symbol)
+
+        # modify available funds
+        funds_available = float(user[0]["cash"]) + total_price
+        db.execute("UPDATE users SET cash = :cash WHERE id = :id", cash=funds_available, id=user_id)
+
+        # commit to history
+        db.execute("INSERT INTO history (user_id, action, symbol, quantity, pps) VALUES (:user_id, :action, :symbol, :quantity, :pps)",
+                    user_id=user_id, action=0, symbol=symbol, quantity=quantity, pps=stock["price"])
+
+        # send a success message
+        return render_template("success.html", action="sold", quantity=quantity,
+                                name=stock["name"], total=usd(total_price), funds=usd(funds_available))
+
+    # else if user reached route via GET (as by clicking a link or via redirect)
+    else:
+        return render_template("sell.html", stocks=stocks)
 
 
 
