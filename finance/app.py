@@ -76,8 +76,8 @@ def buy():
 
     result = lookup(request.form.get("symbol"))
     if not result:
-        return render_template("buy.html", invalid=True, symbol = request.form.get("symbol"))
-
+        return apology("Invalid Symbol")
+    
     name = result["name"]
     price = result["price"]
     symbol = result["symbol"]
