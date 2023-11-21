@@ -167,7 +167,6 @@ def quote():
     return render_template("quote.html", invalid=True, symbol = symbol)
 
 
-
 @app.route("/register", methods=["GET", "POST"])
 def register():
     """Register user"""
