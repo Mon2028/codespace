@@ -87,13 +87,14 @@ def buy():
     # check if user can afford the purchase
     remain = cash - price * shares
     if remain < 0:
-        return apology("Insufficient Funds")
 
     # deduct order cost from user's remaining balance (i.e. cash)
-    db.execute("UPDATE users SET cash = ? WHERE id = ?", remain, user_id, name)
+        db.execute("UPDATE users SET cash = ? WHERE id = ?", remain, user_id, name)
 
     db.execute("INSERT INTO orders (user_id, symbol, shares, price, timestamp) VALUES (?, ?, ?, ?, ?)", \
                                      user_id, symbol, shares, price, time_now())
+    if cash != price:
+        return apology("Insufficient Funds")
 
     return redirect("/")
 
