@@ -90,7 +90,7 @@ def buy():
         return apology("Insufficient Cash. Failed Purchase.")
 
     # deduct order cost from user's remaining balance (i.e. cash)
-    db.execute("UPDATE users SET cash = ? WHERE id = ?", remain, user_id)
+    db.execute("UPDATE users SET cash = ? WHERE id = ?", remain, user_id, name)
 
     db.execute("INSERT INTO orders (user_id, symbol, shares, price, timestamp) VALUES (?, ?, ?, ?, ?)", \
                                      user_id, symbol, shares, price, time_now())
