@@ -87,7 +87,7 @@ def buy():
     # check if user can afford the purchase
     remain = cash - price * shares
     if remain < 0:
-        return apology("Insufficient Cash. Failed Purchase.")
+        return apology("Insufficient Funds")
 
     # deduct order cost from user's remaining balance (i.e. cash)
     db.execute("UPDATE users SET cash = ? WHERE id = ?", remain, user_id, name)
@@ -165,7 +165,7 @@ def quote():
     if not result:
         return apology("INVALID SYMBOL")
     return render_template("quote.html", invalid=True, symbol = symbol)
-   
+
 
 
 @app.route("/register", methods=["GET", "POST"])
