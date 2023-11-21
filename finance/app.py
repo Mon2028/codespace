@@ -163,8 +163,9 @@ def quote():
     symbol = request.form.get("symbol")
     result = lookup(symbol)
     if not result:
-        return render_template("quote.html", invalid=True, symbol = symbol)
-    return render_template("quoted.html", name = result["name"], price = usd(result["price"]), symbol = result["symbol"])
+        return apology("INVALID SYMBOL")
+    return render_template("quote.html", invalid=True, symbol = symbol)
+   
 
 
 @app.route("/register", methods=["GET", "POST"])
