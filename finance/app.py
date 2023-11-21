@@ -164,40 +164,21 @@ def quote():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """Register user"""
-    session.clear()
-
-    if request.method == "POST":
-
-        if not request.form.get("username"):
-            return apology("Please Provide Username", 400)
-
-        elif not request.form.get("password"):
-            return apology("Please Provide Password", 400)
-
-        elif not request.form.get("confirmation"):
-            return apology("Please Confirm Password", 400)
-
-        elif request.form.get("password") != request.form.get("confirmation"):
-            return apology("Passwords Don't Match", 400)
-
-        rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
-
-        if len(rows) != 0:
-            return apology("This Username Already Exists", 200)
-
-        db.execute("INSERT INTO users (username, hash) VALUES(?, ?)",
-                   request.form.get("username"), generate_password_hash(request.form.get("password")))
-
-        rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
-
-        session["user_id"] = rows[0]["id"]
-
+if request.method == "GET":
+    return render_template("register.html")
+if request.method == "POST":
+    if not request.form.get("username"):
+        return apology("Please provide username", 400)
+    if not request.form.get("password"):
+        return apology("Please provide password", 400)
+    if request.form.get("password") != request.form.get("confirmation"):
+        return apology("Passwords don't match", 400)
+    password_hash = generate_password_hash(request.form.get("password"))
+    try:
+        test = db.execute("INSERT INTO users (username,hash) VALUES(?, ?)", request.form.get("username"),password_hash)
         return redirect("/")
-
-    else:
-        return render_template("register.html")
-
+    except ValueError:
+        return apology("Username already Exists")
 
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
