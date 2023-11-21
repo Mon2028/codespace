@@ -164,21 +164,40 @@ def quote():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-if request.method == "GET":
-    return render_template("register.html")
-if request.method == "POST":
-    if not request.form.get("username"):
-        return apology("Please provide username", 400)
-    if not request.form.get("password"):
-        return apology("Please provide password", 400)
-    if request.form.get("password") != request.form.get("confirmation"):
-        return apology("Passwords don't match", 400)
-    password_hash = generate_password_hash(request.form.get("password"))
-    try:
-        test = db.execute("INSERT INTO users (username,hash) VALUES(?, ?)", request.form.get("username"),password_hash)
+    """Register user"""
+    session.clear()
+
+    if request.method == "POST":
+
+        if not request.form.get("username"):
+            return apology("Please Provide Username", 400)
+
+        elif not request.form.get("password"):
+            return apology("Please Provide Password", 400)
+
+        elif not request.form.get("confirmation"):
+            return apology("Please Confirm Password", 400)
+
+        elif request.form.get("password") != request.form.get("confirmation"):
+            return apology("Passwords Don't Match", 400)
+
+        rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
+
+        if len(rows) != 0:
+            return apology("This Username Already Exists", 200)
+
+        db.execute("INSERT INTO users (username, hash) VALUES(?, ?)",
+                   request.form.get("username"), generate_password_hash(request.form.get("password")))
+
+        rows = db.execute("SELECT * FROM users WHERE username = ?", request.form.get("username"))
+
+        session["user_id"] = rows[0]["id"]
+
         return redirect("/")
-    except ValueError:
-        return apology("Username already Exists")
+
+    else:
+        return render_template("register.html")
+
 
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
@@ -210,7 +229,7 @@ def sell():
 
                     db.execute("UPDATE users SET cash = cash + :total_sale WHERE id = :user_id", total_sale=total_sale, user_id=session["user_id"])
 
-                    db.execute("INSERT INTO transactions 9user_id, symbol, shares, price) VALUES (:user_id, :symbol, :shares, :price)", user_id=session["user_id"], symbol=symbol, shares=shares, price=price)
+                    db.execute("INSERT INTO transactions (user_id, symbol, shares, price) VALUES (:user_id, :symbol, :shares, :price)", user_id=session["user_id"], symbol=symbol, shares=shares, price=price)
 
                     flash(f"Sold {shares} shares of {symbol} for {usd(total_sale)}!")
 
