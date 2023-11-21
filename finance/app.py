@@ -42,7 +42,27 @@ def index():
 @login_required
 def buy():
     """Buy shares of stock"""
-    return apology("TODO")
+    if request.method == "POST":
+        symbol = request.form.get("symbol").upper()
+        shares = request.form.get("shares")
+        if not symbol:
+            return apology("Please Provide Symbol")
+        elif not shares or not shares.isdigit() or int(shares) <= 0:
+            return apology("Please Provide a Positive Integer for Shares")
+
+        quote = lookup(symbol)
+        if quote is None:
+            return apology("Symbol Invalid")
+
+        price = quote["price"]
+        total_cost = int(shares) * price
+        cash = db.execute('SELECT cash FROM users WHERE id = :user_id", user_id=session["user_id"])[0]["cash"]
+
+        if cash < total_cost:
+            return apology("INSUFFICIENT FUNDS")
+
+
+
 
 
 @app.route("/history")
