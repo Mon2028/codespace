@@ -206,7 +206,7 @@ def sell():
     # check whether there are sufficient shares to sell
     if owns[symbol] < shares:
         return render_template("sell.html", invalid=True, symbol=symbol, owns = owns.keys())
-    # Execute sell transaction: look up sell price, and add fund to cash,
+
     result = lookup(symbol)
     user_id = session["user_id"]
     cash = db.execute("SELECT cash FROM users WHERE id = ?", user_id)[0]['cash']
@@ -216,10 +216,9 @@ def sell():
     # Log the transaction into orders
     db.execute("INSERT INTO orders (user_id, symbol, shares, price, timestamp) VALUES (?, ?, ?, ?, ?)", \
                                      user_id, symbol, -shares, price, time_now())
-
-    return redirect("/")
-
-
+    elif:
+    return apology("Insufficient Shares")
+           
 def errorhandler(e):
     """Handle error"""
     if not isinstance(e, HTTPException):
