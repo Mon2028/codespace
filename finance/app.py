@@ -194,28 +194,49 @@ def register():
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
 def sell():
-    """Sell shares of stock; Similar to /buy, with negative # shares"""
-    owns = own_shares()
+    """Sell shares of stock"""
     if request.method == "GET":
-        return render_template("sell.html", owns = owns.keys())
+        user_id = session["user_id"]
+        symbols_user = db.execute("SELECT symbol FROM transactions WHERE user_id = ? GROUP BY symbol HAVING SUM(shares) > 0", user_id)
+        return render_template("sell.html", symbols=[row["symbol"] for row in symbols_user])
+    else:
+        symbol = request.form.get("symbol")
+        shares = int(request.form.get("shares"))
 
-    symbol = request.form.get("symbol")
-    shares = int(request.form.get("shares")) # Don't forget: convert str to int
-    # check whether there are sufficient shares to sell
-    if owns[symbol] < shares:
-        return render_template("sell.html", invalid=True, symbol=symbol, owns = owns.keys())
-    # Execute sell transaction: look up sell price, and add fund to cash,
-    result = lookup(symbol)
-    user_id = session["user_id"]
-    cash = db.execute("SELECT cash FROM users WHERE id = ?", user_id)[0]['cash']
-    price = result["price"]
-    remain = cash + price * shares
-    db.execute("UPDATE users SET cash = ? WHERE id = ?", remain, user_id)
-    # Log the transaction into orders
-    db.execute("INSERT INTO orders (user_id, symbol, shares, price, timestamp) VALUES (?, ?, ?, ?, ?)", \
-                                     user_id, symbol, -shares, price, time_now())
+        if not symbol:
+                return apology("Must Give Symbol")
 
-    return redirect("/")
+        stock = lookup(symbol.upper())
+
+        if stock == None:
+            return apology("Symbol Does Not Exist")
+
+        if shares < 0:
+            return apology("Share Not Allowed")
+
+        transaction_value = shares * stock["price"]
+
+        user_id = session["user_id"]
+        user_cash_db = db.execute("SELECT cash FROM users WHERE id = ?", user_id)
+        user_cash = user_cash_db[0]["cash"]
+
+        user_shares = db.execute("SELECT shares FROM transactions WHERE user_id = ? AND symbol = ? GROUP BY symbol", user_id, symbol)
+        user_shares_real = user_shares[0]["shares"]
+
+        if shares > user_shares_real:
+            return apology("You Do Not Have This Amount Od Shares")
+
+        uptd_cash = user_cash + transaction_value
+
+        db.execute("UPDATE users SET cash = ? WHERE id = ?", uptd_cash, user_id)
+
+        date = datetime.datetime.now()
+
+        db.execute("INSERT INTO transactions (user_id, symbol, shares, price, date) VALUES (?, ?, ?, ?, ?)", user_id, stock["symbol"], (-1)*shares, stock["price"], date)
+
+        flash("Sold!")
+
+        return redirect("/")
 
 
 def errorhandler(e):
