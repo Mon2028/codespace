@@ -10,10 +10,11 @@
 }
 h1
 {
+    font-family: Hanson;
     text-align: center;
     font-size: 100px;
 }
-h4
+h2
 {
     margin-left: 210pt;
     padding-top: 12px;
