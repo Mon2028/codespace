@@ -1,3 +1,5 @@
+
+
 .indent
 {
     margin-left: 210pt;
@@ -9,12 +11,7 @@
 h1
 {
     text-align: center;
-    margin-left: 210pt;
-    margin-right: 210pt;
-    padding-top: 12px;
-    padding-bottom: 0px;
-    padding-right: 0px;
-    border-radius: 0px;
+    font-size: 100px;
 }
 h4
 {
