@@ -52,6 +52,13 @@ h6
     font-size: 15px;
     color: lime;
 }
+p
+{
+    font-family: hanson;
+    text-align: left;
+    font-size: 15px;
+    color: white;
+}
 body
 {
     background-color: gray;
