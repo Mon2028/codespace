@@ -6,20 +6,15 @@
           box-sizing: border-box;
         }
 
-        /* Create two equal columns that floats next to each other */
+        /* Create three equal columns that floats next to each other */
         .column {
           float: left;
-          width: 50%;
+          width: 33.33%;
           padding: 10px;
-          height: 20px; /* Should be removed. Only for demonstration */
+          height: 50px;
         }
 
         /* Clear floats after the columns */
-        .row:after {
-          content: "";
-          display: table;
-          clear: both;
-        }
         .row:after {
           content: "";
           display: table;
@@ -29,24 +24,25 @@
         </head>
         <body>
 
-
-
         <div class="row">
           <div class="column" style="background-color:#aaa;">
-            <h2><li>
-              <a href="https://psychic-space-lamp-66x6657gxqx3x5p6-8080.app.github.dev/index.html"
-              target="_blank">
+            <h2>Home</h2>
+            <a href="https://psychic-space-lamp-66x6657gxqx3x5p6-8080.app.github.dev/index.html"
+            target="_blank" >
 
-              Home
-              </a>
-            </li></h2>
-            <p>Some text..</p>
+
           </div>
           <div class="column" style="background-color:#bbb;">
-            <h2>Column 2</h2>
-            <p>Some text..</p>
+            <h2>About</h2>
+
+          </div>
+          <div class="column" style="background-color:#ccc;">
+            <h2>Study Tips</h2>
+
           </div>
         </div>
+
+        </body>
 
         </body>
         </html>
