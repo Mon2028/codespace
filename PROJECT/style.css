@@ -32,7 +32,7 @@ h3
 }
 h4
 {
-    font-family: sans-serif;
+    font-family: hanson;
     text-align: left;
     font-size: 15px;
     color: lime;
@@ -45,6 +45,13 @@ h5
     color: lime;
 }
 
+h6
+{
+    font-family: hanson;
+    text-align: left;
+    font-size: 15px;
+    color: lime;
+}
 body
 {
     background-color: gray;
