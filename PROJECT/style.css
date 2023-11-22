@@ -31,23 +31,9 @@ p
     padding-right: 0px;
     border-radius: 0px;
 }
-.indent_img
-{
-    margin-top: 20px;
-    margin-left: 210pt;
-    margin-right: 210pt;
-    border: 2px solid yellow;
-    border-radius: 4px;
-}
+
 body
 {
-    color: orange;
-    background-color: red;
-}
-hr.solid
-{
-    margin-left: 250pt;
-    margin-right: 250pt;
-    border-top: 3px solid #C0C0C0;
-    border-radius: 5px;
+    color: yellow;
+    background-color: cyan;
 }
