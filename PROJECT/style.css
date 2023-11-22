@@ -16,19 +16,17 @@ h1
 }
 h2
 {
-    margin-left: 210pt;
-    padding-top: 12px;
-    padding-bottom: 0px;
-    padding-right: 0px;
-    border-radius: 0px;
+    font-family: Helvetica-neue-55;
+    text-align: left;
+    font-size: 20px;
+
 }
-p
+h3
 {
-    margin-left: 210pt;
-    margin-right: 210pt;
-    padding-bottom: 0px;
-    padding-right: 0px;
-    border-radius: 0px;
+    font-family: Helvetica-neue-55;
+    text-align: left;
+    font-size: 20px;
+
 }
 
 body
