@@ -14,13 +14,14 @@ h1
     font-family: Hanson;
     text-align: center;
     font-size: 100px;
-    color: silver
+    color: white
 }
 h2
 {
     font-family: Helvetica-neue-55;
     text-align: left;
     font-size: 20px;
+    color: white;
 
 }
 h3
@@ -28,11 +29,11 @@ h3
     font-family: Helvetica-neue-55;
     text-align: left;
     font-size: 20px;
+    color: white;
 
 }
 
 body
 {
-    color: yellow;
-    background-color: cyan;
+    background-color: gray;
 }
