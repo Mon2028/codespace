@@ -15,12 +15,11 @@ h1
     text-align: center;
     font-size: 100px;
     color: white
+    text-decoration: underline;
+    text-decoration-color: green;
 
 }
-u
-{
-    color: green
-}
+
 h2
 {
     font-family: Helvetica-neue-55;
