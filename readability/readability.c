@@ -53,7 +53,7 @@ int main(void)
 
     {
 
-        printf("grade 16\n");
+        printf("Grade 16\n");
 
     }
 
@@ -61,7 +61,7 @@ int main(void)
 
     {
 
-        printf("grade %i\n", (int) round(index));
+        printf("Grade %i\n", (int) round(index));
 
     }
 
