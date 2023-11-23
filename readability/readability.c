@@ -1,67 +1,46 @@
-#include <cs50.h>
 #include <stdio.h>
+#include <cs50.h>
 #include <string.h>
 #include <ctype.h>
 #include <math.h>
 
 int main(void)
 {
-    //getting use input
-    string input = get_string("Text: ");
-    int n = strlen(input);
+    string text = get_string("Text: ");
 
-    //count the number of letters, words, and sentences in the text
-    int lettercount = 0;
-    for (int i = 0; i < n; i++)
+    int letters = 0, words = 0, sentences = 0;
+
+    for (int i = 0; i <= strlen(text); i++)
     {
-        if (isalpha(input[i]))
+        if (text[i] == ' ' || text[i] == '\0')
         {
-            lettercount++;
+            words++;
         }
-
-    }
-    int wordcount = 1;
-    for (int i = 0; i < n; i++)
-    {
-        if (isspace(input[i]) && isgraph(input[i + 1]))
+        else if (text[i] == '.' || text[i] == '!' || text[i] == '?')
         {
-            wordcount++;
+            sentences++;
+        }
+        else if (isalpha(text[i]))
+        {
+            letters++;
         }
     }
-    int sentcount = 0;
-    for (int i = 0; i < n; i++)
-    {
-        if (isalpha(input[i]) && input[i + 1] == '.')
-        {
-            sentcount++;
-        }
-        else if (isalpha(input[i]) && input[i + 1] == '!')
-        {
-            sentcount++;
-        }
-        else if (isalpha(input[i]) && input[i + 1] == '?')
-        {
-            sentcount++;
-        }
-    }
-    float l = (float) lettercount / wordcount * 100;
-    float s = (float) sentcount / wordcount * 100;
-    float grade = 0.0588 * l - 0.296 * s - 15.8;
-    printf("%i %i %i\n", lettercount, wordcount, sentcount);
+    // printf("letters: %i\nwords: %i\nsentences: %i\n", letters, words, sentences);
 
-    if (grade < 1)
+    const float AVERAGE = 100.0 / words;
+    float index = (0.0588 * AVERAGE * letters) - (0.296 * AVERAGE * sentences) - 15.8;
+    // printf("index: %f\n", index);
+
+    if (index < 1)
     {
         printf("Before Grade 1\n");
     }
     else if (index > 16)
     {
-         printf("Grade 16+\n");
+        printf("Grade 16+\n");
     }
     else
     {
-
-        printf("Grade 16+\n");
-
+        printf("Grade %i\n", (int) round(index));
     }
-
 }
