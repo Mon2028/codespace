@@ -6,7 +6,7 @@
 
 int main(void)
 {
-    string text = get_string("Text: ");
+    string text = get_string("text: ");
 
     int letters = 0, words = 0, sentences = 0;
 
@@ -25,12 +25,9 @@ int main(void)
             letters++;
         }
     }
-    // printf("letters: %i\nwords: %i\nsentences: %i\n", letters, words, sentences);
 
     const float AVERAGE = 100.0 / words;
     float index = (0.0588 * AVERAGE * letters) - (0.296 * AVERAGE * sentences) - 15.8;
-    // printf("index: %f\n", index);
-
     if (index < 1)
     {
         printf("Before Grade 1\n");
