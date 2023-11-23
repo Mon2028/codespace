@@ -10,7 +10,7 @@
 
  I was actually thinking of creating a python video game, but I decided to keep on thinking of more productive ideas. And because the word 'productivity' popped into my head, study came into mind.
 
- It is the most common issue in teenage households. Everywhere, students are struggling with balancing everyday life with their school work and exam preparation. This can lead to mental breakdowns and depression.
+ It is the most common issue in teenage households. Everywhere, students are struggling with balancing everyday life with their school work and exam preparation. This can lead to mental breakdowns and depression. With these problems, the future generation will not have the tools to make the world into a more advanced and friendly environment.
 
 ## Home Page
 
