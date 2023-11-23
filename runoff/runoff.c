@@ -44,7 +44,6 @@ int main(int argc, string argv[])
         return 1;
     }
 
-    // Populate array of candidates
     candidate_count = argc - 1;
     if (candidate_count > MAX_CANDIDATES)
     {
@@ -69,25 +68,27 @@ int main(int argc, string argv[])
     for (int i = 0; i < voter_count; i++)
     {
 
-        // Query for each rank
         for (int j = 0; j < candidate_count; j++)
         {
             string name = get_string("Rank %i: ", j + 1);
-
-            // Record vote, unless it's invalid
             if (!vote(i, j, name))
             {
-                printf("Invalid vote.\n");
+
+                printf("Vote is not valid.\n");
                 return 4;
+
             }
+
         }
 
         printf("\n");
+
     }
 
     while (true)
 
     {
+
         tabulate();
         bool won = print_winner();
         if (won)
