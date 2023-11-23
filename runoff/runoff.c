@@ -126,7 +126,20 @@ int main(int argc, string argv[])
 // Record preference if vote is valid
 bool vote(int voter, int rank, string name)
 {
-    // TODO
+    for (int i = 0; i < voter_count; i++)
+    {
+
+        // Query for each rank
+        for (int j = 0; j < candidate_count; j++)
+        {
+            string name = get_string("Rank %i: ", j + 1);
+
+            if (!vote(i, j, name))
+            {
+                printf("Invalid vote.\n");
+                return 4;
+            }
+        }
     return false;
 }
 
