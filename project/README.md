@@ -8,7 +8,9 @@
 
  To become a successful student, whether it be primary school or college, time management is key. Overworking is definitely not going to help, as it results in stress and, ultimately, losing interest in study. STUDY SMART helps students carefully sort out their schedules to have a perfect balance between leisure and school.
 
- I was actually thinking of creating a python video game, but I decided 
+ I was actually thinking of creating a python video game, but I decided to keep on thinking of more productive ideas. And because the word 'productivity' popped into my head, study came into mind.
+
+ It is the most common issue in teenage households. Everywhere, students are struggling with balancing everyday life with their school work and exam preparation. This can lead to mental breakdowns and depression.
 
 ## Home Page
 
