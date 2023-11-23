@@ -53,7 +53,7 @@ int main(void)
 
     {
 
-        printf("grade 16 (and over)\n");
+        printf("grade 16\n");
 
     }
 
