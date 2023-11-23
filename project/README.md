@@ -14,16 +14,16 @@
 
 ## Home Page
 
- The Home page is basically just an introduction to my site, and includes a quote and the title of my project. It is quite like an advertisement.
+ The Home page is basically just an introduction to my site, and includes a quote and the title of my project. It is quite like an advertisement. It also includes the symbol of my project, which is a boy reading a book, which is minimalist in nature and comes from the internet. The home page has all the elements required to display my website and act as a flagship page.
 
  ## About page
 
-The About page talks about why I started STUDY SMART and has the link to my presentation video.
+The About page talks about why I started STUDY SMART and has the link to my presentation video. This page describes how the website will help, and the background to the website launching. The About page also includes the link to the overview video.
 
 ## Study Tips Page
 
-The Study Tips page includes skills and tactics that will help students fare better when preparing for big exams, or just leisurely studying.
+The Study Tips page includes skills and tactics that will help students fare better when preparing for big exams, or just leisurely studying. It includes links to universities like Harvard, Auckland, and Oxford. The tips are all sourced from expert websites and personal opinion. These were taken to average and boiled down to key points.
 
 ## Thank You
 
-I hope this website helps, and that everyone who uses it improves in some way. If you used my website, thank you very much, I really appreciate it. This was CS50 for me!
+I hope this website helps, and that everyone who uses it improves in some way. If you used my website, thank you very much, I really appreciate it. Thank you very much to CS50 for this opportunity and hopefully I am able to pursue another course run by Harvard.This was CS50 for me!
