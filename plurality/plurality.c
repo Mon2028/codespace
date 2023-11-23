@@ -1,24 +1,18 @@
 #include <cs50.h>
 #include <stdio.h>
 #include <string.h>
-
-// Max number of candidates
 #define MAX 9
 
-// Candidates have name and vote count
 typedef struct
 {
     string name;
     int votes;
 } candidate;
 
-// Array of candidates
 candidate candidates[MAX];
 
-// Number of candidates
 int candidate_count;
 
-// Function prototypes
 bool vote(string name);
 void print_winner(void);
 
@@ -67,7 +61,7 @@ bool vote(string name)
 {
     for (int i = 0; i < candidate_count; i++)
     {
-        if (strcmp(candidates[i].name, name) = 0)
+        if (strcmp(candidates[i].name, name) == 0)
         {
             candidates[i].votes++;
             return true;
@@ -90,7 +84,7 @@ void print_winner(void)
     }
     for (int i = 0; i < candidate_count; i++)
     {
-        if (candidates[i].votes = maximum_vote)
+        if (candidates[i].votes == maximum_vote)
         {
             printf("%s/n", candidates[i].name);
         }
